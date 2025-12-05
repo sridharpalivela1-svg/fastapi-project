@@ -1,0 +1,28 @@
+version "3.9"
+
+serviuces:
+  fastapi:
+    build: .
+     container_name: fastapi_2fa-app
+     ports:
+        - "8000:8000"
+     volumes:
+        - .:/app
+        - logs:/app/logs
+       command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+       depends_on:
+          -redis
+
+
+  redis:
+    image: redis:alpine
+    container_name: redis_2fa
+    ports:
+      - "6378:6378"
+    volumes:
+      - redis-data:/data
+
+
+volumes:
+  logs:
+  redis-data:

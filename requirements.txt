@@ -3,4 +3,4 @@ uvicorn[standard]
 pyotp
 cryptography
 python-multipart
-pydantic
+pydantic 
